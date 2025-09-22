@@ -1,0 +1,47 @@
+{
+  "name": "@aodesu/ui-components",
+  "version": "1.1.0",
+  "main": "dist/react/src/index.js",
+  "types": "dist/react/src/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/react/src/index.d.ts",
+      "import": "./dist/react/src/index.js",
+      "require": "./dist/react/src/index.js"
+    },
+    "./theme": {
+      "types": "./dist/react/src/theme.types.d.ts",
+      "import": "./dist/react/src/theme.types.js",
+      "require": "./dist/react/src/theme.types.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "mitosis build --out dist",
+    "dev": "mitosis build --out dist --watch",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "ui-components",
+    "mitosis",
+    "react",
+    "theme",
+    "design-system"
+  ],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.16.1",
+  "dependencies": {
+    "@builder.io/mitosis": "^0.12.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0"
+  }
+}

@@ -1,0 +1,10 @@
+// src/ThemeProvider.lite.tsx
+import ThemeContext from "./Theme.context.lite.ts.bak";
+
+export default function ThemeProvider(props: any) {
+  return (
+    <ThemeContext.Provider value={props.theme || {}}>
+      {props.children}
+    </ThemeContext.Provider>
+  );
+}

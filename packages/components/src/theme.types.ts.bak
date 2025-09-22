@@ -1,0 +1,113 @@
+// src/theme.types.ts
+export type ColorTokens = {
+  background?: string;
+  color?: string;
+  border?: string;
+  borderRadius?: string;
+  padding?: string;
+  margin?: string;
+  fontSize?: string;
+  fontWeight?: string;
+  boxShadow?: string;
+  opacity?: string;
+};
+
+export type ComponentVariant = {
+  [color: string]: ColorTokens;
+};
+
+export type ComponentTheme = {
+  [variant: string]: ComponentVariant;
+};
+
+export type Theme = {
+  [component: string]: ComponentTheme;
+};
+
+// Tipos específicos para componentes comunes
+export type ButtonVariants = 'contained' | 'outlined' | 'text';
+export type ButtonColors = 'primary' | 'secondary' | 'success' | 'error' | 'warning' | 'info';
+
+// Tema por defecto
+export const defaultTheme: Theme = {
+  button: {
+    contained: {
+      primary: {
+        background: '#2563eb',
+        color: '#ffffff',
+        border: 'none',
+        borderRadius: '6px',
+        padding: '8px 16px',
+        fontSize: '14px',
+        fontWeight: '500',
+      },
+      secondary: {
+        background: '#64748b',
+        color: '#ffffff',
+        border: 'none',
+        borderRadius: '6px',
+        padding: '8px 16px',
+        fontSize: '14px',
+        fontWeight: '500',
+      },
+      success: {
+        background: '#16a34a',
+        color: '#ffffff',
+        border: 'none',
+        borderRadius: '6px',
+        padding: '8px 16px',
+        fontSize: '14px',
+        fontWeight: '500',
+      },
+      error: {
+        background: '#dc2626',
+        color: '#ffffff',
+        border: 'none',
+        borderRadius: '6px',
+        padding: '8px 16px',
+        fontSize: '14px',
+        fontWeight: '500',
+      },
+    },
+    outlined: {
+      primary: {
+        background: 'transparent',
+        color: '#2563eb',
+        border: '1px solid #2563eb',
+        borderRadius: '6px',
+        padding: '8px 16px',
+        fontSize: '14px',
+        fontWeight: '500',
+      },
+      secondary: {
+        background: 'transparent',
+        color: '#64748b',
+        border: '1px solid #64748b',
+        borderRadius: '6px',
+        padding: '8px 16px',
+        fontSize: '14px',
+        fontWeight: '500',
+      },
+    },
+    text: {
+      primary: {
+        background: 'transparent',
+        color: '#2563eb',
+        border: 'none',
+        borderRadius: '6px',
+        padding: '8px 16px',
+        fontSize: '14px',
+        fontWeight: '500',
+      },
+      secondary: {
+        background: 'transparent',
+        color: '#64748b',
+        border: 'none',
+        borderRadius: '6px',
+        padding: '8px 16px',
+        fontSize: '14px',
+        fontWeight: '500',
+      },
+    },
+  },
+};
