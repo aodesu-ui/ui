@@ -1,3 +1,7 @@
 packages:
-  - 'packages/*'
-  - 'apps/*'
+  - "apps/*"
+  - "packages/*"
+  - "!**/test/**"
+  - "!**/fixtures/**"
+  - "!**/temp/**"
+  - "!packages/tests/temp/**"

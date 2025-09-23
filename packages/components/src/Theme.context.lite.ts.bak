@@ -1,4 +1,0 @@
-// src/Theme.context.lite.ts
-import { createContext } from "@builder.io/mitosis";
-
-export default createContext({});
