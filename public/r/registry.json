@@ -12,7 +12,7 @@
         {
           "path": "registry/aodesu/theme.css",
           "type": "registry:style",
-          "target": "styles/aodesu.css"
+          "target": "themes/aodesu.css"
         }
       ]
     },
@@ -25,7 +25,7 @@
         {
           "path": "registry/dark/theme.css",
           "type": "registry:style",
-          "target": "styles/dark.css"
+          "target": "themes/dark.css"
         }
       ]
     },

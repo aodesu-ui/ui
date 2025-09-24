@@ -7,9 +7,9 @@
   "files": [
     {
       "path": "registry/aodesu/theme.css",
-      "content": "/* registry/aodesu/theme.css */\r\n\r\n/* Light */\r\n[data-theme=\"aodesu-light\"] {\r\n  --background: #ffffff;\r\n  --foreground: #111111;\r\n  --primary: #2563eb;\r\n  --primary-foreground: #ffffff;\r\n  --secondary: #6b7280;\r\n  --secondary-foreground: #ffffff;\r\n}\r\n\r\n/* Dark */\r\n[data-theme=\"aodesu-dark\"] {\r\n  --background: #111111;\r\n  --foreground: #f9fafb;\r\n  --primary: #3b82f6;\r\n  --primary-foreground: #111111;\r\n  --secondary: #9ca3af;\r\n  --secondary-foreground: #111111;\r\n}\r\n",
+      "content": "@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');\n\n[data-theme=\"aodesu-light\"] {\n  --font-branch: \"Amatic SC\", sans-serif;\n\n  --background: 30 20% 95%;\n  --foreground: 0 0% 0%;\n  --primary: 30 50% 30%;\n  --primary-foreground: 0 0% 100%;\n  --secondary: 30 10% 50%;\n  --secondary-foreground: 0 0% 100%;\n  --border: 0 0% 80%;\n\n  --border-outline: 0 0% 80%;\n}\n\n[data-theme=\"aodesu-dark\"] {\n  --font-branch: \"Amatic SC\", sans-serif;\n\n  --background: 30 20% 10%;\n  --foreground: 0 0% 100%;\n  --primary: 30 50% 70%;\n  --primary-foreground: 0 0% 0%;\n  --secondary: 30 10% 30%;\n  --secondary-foreground: 0 0% 100%;\n\n  --border-outline: 0 0% 20%;\n}",
       "type": "registry:style",
-      "target": "styles/aodesu.css"
+      "target": "themes/aodesu.css"
     }
   ]
 }

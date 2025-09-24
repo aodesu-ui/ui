@@ -2,6 +2,7 @@
 
 /* Light */
 [data-theme="dark-light"] {
+  --font-branch: "Amatic SC", sans-serif;
   --background: #f3f4f6;
   --foreground: #1f2937;
   --primary: #4b5563;
@@ -12,6 +13,7 @@
 
 /* Dark */
 [data-theme="dark-dark"] {
+  --font-branch: "Amatic SC", sans-serif;
   --background: #0f172a;
   --foreground: #f8fafc;
   --primary: #e5e7eb;

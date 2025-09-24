@@ -7,9 +7,9 @@
   "files": [
     {
       "path": "registry/dark/theme.css",
-      "content": "/* registry/dark/theme.css */\r\n\r\n/* Light */\r\n[data-theme=\"dark-light\"] {\r\n  --background: #f3f4f6;\r\n  --foreground: #1f2937;\r\n  --primary: #4b5563;\r\n  --primary-foreground: #ffffff;\r\n  --secondary: #9ca3af;\r\n  --secondary-foreground: #111111;\r\n}\r\n\r\n/* Dark */\r\n[data-theme=\"dark-dark\"] {\r\n  --background: #0f172a;\r\n  --foreground: #f8fafc;\r\n  --primary: #e5e7eb;\r\n  --primary-foreground: #111111;\r\n  --secondary: #374151;\r\n  --secondary-foreground: #f9fafb;\r\n}\r\n",
+      "content": "/* registry/dark/theme.css */\n\n/* Light */\n[data-theme=\"dark-light\"] {\n  --font-branch: \"Amatic SC\", sans-serif;\n  --background: #f3f4f6;\n  --foreground: #1f2937;\n  --primary: #4b5563;\n  --primary-foreground: #ffffff;\n  --secondary: #9ca3af;\n  --secondary-foreground: #111111;\n}\n\n/* Dark */\n[data-theme=\"dark-dark\"] {\n  --font-branch: \"Amatic SC\", sans-serif;\n  --background: #0f172a;\n  --foreground: #f8fafc;\n  --primary: #e5e7eb;\n  --primary-foreground: #111111;\n  --secondary: #374151;\n  --secondary-foreground: #f9fafb;\n}\n",
       "type": "registry:style",
-      "target": "styles/dark.css"
+      "target": "themes/dark.css"
     }
   ]
 }
