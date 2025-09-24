@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aodesu",
+  "type": "registry:theme",
+  "title": "Aodesu Theme",
+  "description": "Custom Aodesu theme with light and dark variants",
+  "files": [
+    {
+      "path": "registry/aodesu/theme.css",
+      "content": "/* registry/aodesu/theme.css */\r\n\r\n/* Light */\r\n[data-theme=\"aodesu-light\"] {\r\n  --background: #ffffff;\r\n  --foreground: #111111;\r\n  --primary: #2563eb;\r\n  --primary-foreground: #ffffff;\r\n  --secondary: #6b7280;\r\n  --secondary-foreground: #ffffff;\r\n}\r\n\r\n/* Dark */\r\n[data-theme=\"aodesu-dark\"] {\r\n  --background: #111111;\r\n  --foreground: #f9fafb;\r\n  --primary: #3b82f6;\r\n  --primary-foreground: #111111;\r\n  --secondary: #9ca3af;\r\n  --secondary-foreground: #111111;\r\n}\r\n",
+      "type": "registry:style",
+      "target": "styles/aodesu.css"
+    }
+  ]
+}

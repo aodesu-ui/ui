@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dark/style",
+  "type": "registry:file",
+  "files": [
+    {
+      "path": "registry/dark/style.css",
+      "content": "[data-theme=\"dark\"] {\r\n  --primary: 50 70% 50%;\r\n  --primary-foreground: 0 0% 100%;\r\n  --secondary: 220 10% 90%;\r\n  --secondary-foreground: 220 20% 20%;\r\n  --border: 220 10% 80%;\r\n  --foreground: 220 15% 20%;\r\n  --accent: 220 15% 95%;\r\n  --destructive: 0 70% 50%;\r\n  --destructive-foreground: 0 0% 100%;\r\n}\r\n",
+      "type": "registry:style",
+      "target": "styles/dark.css"
+    }
+  ]
+}

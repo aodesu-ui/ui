@@ -1,0 +1,63 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "aodesu",
+  "homepage": "https://ui.aodesu.com",
+  "items": [
+    {
+      "name": "aodesu",
+      "type": "registry:theme",
+      "title": "Aodesu Theme",
+      "description": "Custom Aodesu theme with light and dark variants",
+      "files": [
+        {
+          "path": "registry/aodesu/theme.css",
+          "type": "registry:style",
+          "target": "styles/aodesu.css"
+        }
+      ]
+    },
+    {
+      "name": "dark",
+      "type": "registry:theme",
+      "title": "Dark Theme",
+      "description": "Dark theme with light and dark variants",
+      "files": [
+        {
+          "path": "registry/dark/theme.css",
+          "type": "registry:style",
+          "target": "styles/dark.css"
+        }
+      ]
+    },
+    {
+      "name": "dark/button",
+      "type": "registry:ui",
+      "title": "Button (dark)",
+      "description": "Button component bound to Dark theme variables",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["http://localhost:3000/r/dark.json"],
+      "files": [
+        {
+          "path": "registry/dark/ui/button.tsx",
+          "type": "registry:component",
+          "target": "components/dark/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "aodesu/button",
+      "type": "registry:ui",
+      "title": "Button (aodesu)",
+      "description": "Button component bound to Aodesu theme variables",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["http://localhost:3000/r/aodesu.json"],
+      "files": [
+        {
+          "path": "registry/aodesu/ui/button.tsx",
+          "type": "registry:component",
+          "target": "components/aodesu/button.tsx"
+        }
+      ]
+    }
+  ]
+}

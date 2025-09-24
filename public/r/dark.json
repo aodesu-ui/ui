@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dark",
+  "type": "registry:theme",
+  "title": "Dark Theme",
+  "description": "Dark theme with light and dark variants",
+  "files": [
+    {
+      "path": "registry/dark/theme.css",
+      "content": "/* registry/dark/theme.css */\r\n\r\n/* Light */\r\n[data-theme=\"dark-light\"] {\r\n  --background: #f3f4f6;\r\n  --foreground: #1f2937;\r\n  --primary: #4b5563;\r\n  --primary-foreground: #ffffff;\r\n  --secondary: #9ca3af;\r\n  --secondary-foreground: #111111;\r\n}\r\n\r\n/* Dark */\r\n[data-theme=\"dark-dark\"] {\r\n  --background: #0f172a;\r\n  --foreground: #f8fafc;\r\n  --primary: #e5e7eb;\r\n  --primary-foreground: #111111;\r\n  --secondary: #374151;\r\n  --secondary-foreground: #f9fafb;\r\n}\r\n",
+      "type": "registry:style",
+      "target": "styles/dark.css"
+    }
+  ]
+}

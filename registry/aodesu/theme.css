@@ -1,0 +1,21 @@
+/* registry/aodesu/theme.css */
+
+/* Light */
+[data-theme="aodesu-light"] {
+  --background: #ffffff;
+  --foreground: #111111;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --secondary: #6b7280;
+  --secondary-foreground: #ffffff;
+}
+
+/* Dark */
+[data-theme="aodesu-dark"] {
+  --background: #111111;
+  --foreground: #f9fafb;
+  --primary: #3b82f6;
+  --primary-foreground: #111111;
+  --secondary: #9ca3af;
+  --secondary-foreground: #111111;
+}

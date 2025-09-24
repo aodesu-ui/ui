@@ -1,0 +1,19 @@
+[data-theme="aodesu-light"] {
+  --background: 30 20% 95%;
+  /* HSL triplete */
+  --foreground: 0 0% 0%;
+  /* HSL triplete */
+  --primary: 30 50% 30%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 30 10% 50%;
+  --secondary-foreground: 0 0% 100%;
+}
+
+[data-theme="aodesu-dark"] {
+  --background: 30 20% 10%;
+  --foreground: 0 0% 100%;
+  --primary: 30 50% 70%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 30 10% 30%;
+  --secondary-foreground: 0 0% 100%;
+}
