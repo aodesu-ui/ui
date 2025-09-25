@@ -1,5 +1,4 @@
 import { Button } from "@/registry/aodesu/ui/button";
-import { ThemeProvider } from "@/registry/aodesu/ui/theme";
 
 export default function Home() {
   return (

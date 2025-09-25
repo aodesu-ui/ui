@@ -1,9 +1,8 @@
 "use client"
 import { Button } from "@/registry/aodesu/ui/button";
-import { DropdownButton, DropdownMenuCheckboxItem, DropdownMenuItem } from "@/registry/aodesu/ui/dropdown-menu";
+import { DropdownButton, DropdownMenuItem } from "@/registry/aodesu/ui/dropdown-menu";
 import { useThemeContext } from "@/registry/theme";
 import { ChevronDown, Menu, Moon, Sun } from "lucide-react";
-import Link from "next/link";
 
 const AodesuIcon = (props: any) => {
   return (
@@ -76,6 +75,7 @@ export const Header = () => {
           <DropdownButton menuGropClassName="" label="Estilos">
             {availableStyles.map((s) => (
               <DropdownMenuItem
+                key={s}
                 onClick={() => {
                   setStyle(s);
                 }}
