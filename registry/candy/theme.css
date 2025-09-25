@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Fascinate&display=swap');
+
+/* Light */
+[data-style="candy"],
+[data-style="candy"][data-theme="light"] {
+  --font-branch: "Fascinate", system-ui;
+  --background: #f3f4f6;
+  --foreground: #1f2937;
+  --primary: hsl(335, 73%, 58%);
+  --primary-foreground: #ffffff;
+  --secondary: #9ca3af;
+  --secondary-foreground: #111111;
+
+  --border: hsl(0 0% 75%);
+
+  --border-outline: hsl(0 0% 85%);
+
+  --ghost-neutral-bg: 0 0% 0%;
+  --ghost-neutral-bg-h: hsl(0 0% 95%);
+}
+
+/* Dark */
+[data-style="candy"][data-theme="dark"] {
+  --font-branch: "Fascinate", system-ui;
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --primary: hsl(335, 73%, 58%);
+  --primary-foreground: #111111;
+  --secondary: #374151;
+  --secondary-foreground: #f9fafb;
+
+  --border: hsl(0 0% 30%);
+
+  --border-outline: hsl(0 0% 20%);
+
+  --ghost-neutral-bg: 0 0% 0%;
+  --ghost-neutral-bg-h: hsl(0 0% 13%);
+
+  --popover: hsl(0 0% 15%);
+  --popover-foreground: hsl(0 0% 90%)
+}

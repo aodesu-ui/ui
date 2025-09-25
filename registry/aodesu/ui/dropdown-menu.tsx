@@ -290,7 +290,7 @@ function DropdownMenuSubContent({
   );
 }
 
-function DropdownButton({ label, children }: { label: string, children: React.ReactNode }) {
+function DropdownButton({ label, children, menuGropClassName }: { label: string, children: React.ReactNode, menuGropClassName: string | null }) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -300,7 +300,7 @@ function DropdownButton({ label, children }: { label: string, children: React.Re
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuGroup>
+        <DropdownMenuGroup className={menuGropClassName ? menuGropClassName : ''}>
           {children}
         </DropdownMenuGroup>
       </DropdownMenuContent>

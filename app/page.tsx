@@ -6,9 +6,9 @@ export default function Home() {
     <div className="max-w-3xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8">
       hola
       <Button>Que onda negro</Button>
-      <ThemeProvider defaultTheme="aodesu-dark">
+      {/* <ThemeProvider defaultTheme="aodesu-dark">
         <Button>Que onda blanco</Button>
-      </ThemeProvider>
+      </ThemeProvider> */}
     </div>
   );
 }

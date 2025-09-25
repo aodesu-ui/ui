@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
-[data-theme="aodesu-light"] {
+[data-style="aodesu"][data-theme="light"] {
   --font-branch: "Yomogi", cursive;
 
   --background: 30 20% 95%;
@@ -11,12 +11,20 @@
   --border: hsl(0 0% 75%);
 
   --border-outline: hsl(0 0% 85%);
+  
 
   --ghost-neutral-bg: 0 0% 0%;
   --ghost-neutral-bg-h: hsl(0 0% 95%);
+
+
+  --ghost-contrast-foreground: hsl(0, 0%, 93%);
+  --ghost-contrast-bg: hsl(0 0% 13%);
+  --ghost-contrast-bg-h: hsl(0 0% 20%);
 }
 
-[data-theme="aodesu-dark"] {
+[data-style="aodesu"],
+[data-style="aodesu"][data-theme="dark"]
+ {
   --font-branch: "Yomogi", cursive;
 
   --background: 30 20% 10%;
@@ -28,14 +36,18 @@
   --secondary-h: hsl(255 46% 49%);
   --secondary-foreground: 0 0% 100%;
   --contrast: hsl(0 0% 93%);
-  --contrast-h: hsl(0, 0%, 80%);
+  --contrast-h: hsl(0 0% 80%);
   --border: hsl(0 0% 30%);
 
   --border-outline: hsl(0 0% 20%);
 
-  --ghost-neutral-bg: 0 0% 0%;
+  --ghost-neutral-bg: hsl(0 0% 0%);
   --ghost-neutral-bg-h: hsl(0 0% 13%);
 
+  --ghost-contrast-foreground: hsl(0, 0%, 7%);
+  --ghost-contrast-bg: hsl(0 0% 93%);
+  --ghost-contrast-bg-h: hsl(0 0% 80%);
+
   --popover: hsl(0 0% 15%);
-  --popover-foreground: hsl(0 0% 90%)
+  --popover-foreground: hsl(0 0% 90%);
 }

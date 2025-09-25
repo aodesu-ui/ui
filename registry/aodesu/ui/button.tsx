@@ -31,6 +31,11 @@ const buttonVariants = cva(
         className: "hover:bg-[var(--ghost-neutral-bg-h)]"
       },
       {
+        variant: "ghost",
+        color: "contrast",
+        className: "bg-[var(--ghost-contrast-bg)] text-[var(--ghost-contrast-foreground)] hover:bg-[var(--ghost-contrast-bg-h)]"
+      },
+      {
         variant: "outlined",
         color: "neutral",
         className: "border-[var(--border-outline)]"
@@ -47,6 +52,7 @@ const buttonVariants = cva(
 function Button({
   className,
   variant,
+  color,
   size,
   asChild = false,
   ...props
@@ -59,7 +65,7 @@ function Button({
   return (
     <Comp
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      className={cn(buttonVariants({ variant, color, size, className }))}
       {...props}
     />
   );
