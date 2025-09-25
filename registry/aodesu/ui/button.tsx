@@ -21,7 +21,7 @@ const buttonVariants = cva(
       },
       size: {
         default: "h-9 rounded-lg px-4 py-2 has-[>svg]:px-3",
-        icon: "size-9",
+        icon: "size-9 rounded-lg",
       },
     },
     compoundVariants: [
@@ -33,7 +33,7 @@ const buttonVariants = cva(
       {
         variant: "outlined",
         color: "neutral",
-        className: "border-[hsl(var(--border-outline))]"
+        className: "border-[var(--border-outline)]"
       }
     ],
     defaultVariants: {

@@ -1,32 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
 [data-theme="aodesu-light"] {
-  --font-branch: "Amatic SC", sans-serif;
+  --font-branch: "Yomogi", cursive;
 
   --background: 30 20% 95%;
   --foreground: 0 0% 0%;
-  --primary: 30 50% 30%;
+  --primary: hsl(225, 73%, 60%);
   --primary-foreground: 0 0% 100%;
   --secondary: 30 10% 50%;
   --secondary-foreground: 0 0% 100%;
-  --border: 0 0% 80%;
+  --border: hsl(0 0% 75%);
 
-  --border-outline: 0 0% 80%;
+  --border-outline: hsl(0 0% 85%);
+
+  --ghost-neutral-bg: 0 0% 0%;
+  --ghost-neutral-bg-h: hsl(0 0% 95%);
 }
 
 [data-theme="aodesu-dark"] {
-  --font-branch: "Amatic SC", sans-serif;
+  --font-branch: "Yomogi", cursive;
 
   --background: 30 20% 10%;
   --foreground: 0 0% 100%;
-  --primary: 30 50% 70%;
+  --primary: hsl(225, 73%, 57%);
+  --primary-h: hsl(255 55% 45%);
   --primary-foreground: 0 0% 0%;
-  --secondary: 30 10% 30%;
+  --secondary: hsl(255,73%,61%);
+  --secondary-h: hsl(255 46% 49%);
   --secondary-foreground: 0 0% 100%;
-  --border: 0 0% 30%;
+  --contrast: hsl(0 0% 93%);
+  --contrast-h: hsl(0, 0%, 80%);
+  --border: hsl(0 0% 30%);
 
-  --border-outline: 0 0% 20%;
+  --border-outline: hsl(0 0% 20%);
 
   --ghost-neutral-bg: 0 0% 0%;
   --ghost-neutral-bg-h: hsl(0 0% 13%);
+
+  --popover: hsl(0 0% 15%);
+  --popover-foreground: hsl(0 0% 90%)
 }

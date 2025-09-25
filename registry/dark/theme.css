@@ -1,23 +1,40 @@
-/* registry/dark/theme.css */
+@import url('https://fonts.googleapis.com/css2?family=Fascinate&display=swap');
 
 /* Light */
 [data-theme="dark-light"] {
-  --font-branch: "Amatic SC", sans-serif;
+  --font-branch: "Fascinate", system-ui;
   --background: #f3f4f6;
   --foreground: #1f2937;
-  --primary: #4b5563;
+  --primary: hsl(335, 73%, 58%);
   --primary-foreground: #ffffff;
   --secondary: #9ca3af;
   --secondary-foreground: #111111;
+
+  --border: hsl(0 0% 75%);
+
+  --border-outline: hsl(0 0% 85%);
+
+  --ghost-neutral-bg: 0 0% 0%;
+  --ghost-neutral-bg-h: hsl(0 0% 95%);
 }
 
 /* Dark */
 [data-theme="dark-dark"] {
-  --font-branch: "Amatic SC", sans-serif;
+  --font-branch: "Fascinate", system-ui;
   --background: #0f172a;
   --foreground: #f8fafc;
-  --primary: #e5e7eb;
+  --primary: hsl(335, 73%, 58%);
   --primary-foreground: #111111;
   --secondary: #374151;
   --secondary-foreground: #f9fafb;
+
+  --border: hsl(0 0% 30%);
+
+  --border-outline: hsl(0 0% 20%);
+
+  --ghost-neutral-bg: 0 0% 0%;
+  --ghost-neutral-bg-h: hsl(0 0% 13%);
+
+  --popover: hsl(0 0% 15%);
+  --popover-foreground: hsl(0 0% 90%)
 }
