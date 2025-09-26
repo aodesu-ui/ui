@@ -2,7 +2,7 @@
 [data-style="aodesu"][data-theme="light"] {
   --font-branch: "Yomogi", cursive;
 
-  --background: hsl(30 20% 95%);
+  --background: hsl(0 0% 95%);
   --foreground: 0 0% 0%;
   --primary: hsl(225, 73%, 60%);
   --primary-foreground: 0 0% 100%;
@@ -13,7 +13,7 @@
   --border-outline: hsl(0 0% 85%);
 
 
-  --ghost-neutral-bg: 0 0% 0%;
+  --ghost-neutral-bg: hsl(0 0% 0%);
   --ghost-neutral-bg-h: hsl(0 0% 90%);
 
   --ghost-contrast-foreground: hsl(0, 0%, 93%);

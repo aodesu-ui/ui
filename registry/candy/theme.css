@@ -4,19 +4,29 @@
 [data-style="candy"],
 [data-style="candy"][data-theme="light"] {
   --font-branch: "Fascinate", system-ui;
-  --background: #f3f4f6;
-  --foreground: #1f2937;
+  --background: hsl(20, 75%, 95%);
+  --foreground: hsl(215, 28%, 17%);
+
   --primary: hsl(335, 73%, 58%);
   --primary-foreground: #ffffff;
-  --secondary: #9ca3af;
-  --secondary-foreground: #111111;
 
-  --border: hsl(0 0% 75%);
+  --secondary: 30 10% 50%;
+  --secondary-foreground: 0 0% 100%;
+  --border: hsla(20, 100%, 12%, .2);
 
-  --border-outline: hsl(0 0% 85%);
+  --border-outline: hsla(20, 100%, 12%, 0.25);
+
 
   --ghost-neutral-bg: 0 0% 0%;
-  --ghost-neutral-bg-h: hsl(0 0% 95%);
+  --ghost-neutral-bg-h: hsl(20 75% 90%);
+
+  --ghost-contrast-foreground: hsl(215, 28%, 17%);
+  --ghost-contrast-bg: hsl(200 75% 92%);
+  --ghost-contrast-bg-h: hsl(200 75% 85%);
+
+  --text-neutral: hsl(0, 0%, 35%);
+  --text-neutral-h: hsl(0, 0%, 10%);
+  --text-neutral-active: hsl(0, 0%, 5%);
 }
 
 /* Dark */
