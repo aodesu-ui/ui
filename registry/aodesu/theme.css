@@ -2,7 +2,7 @@
 [data-style="aodesu"][data-theme="light"] {
   --font-branch: "Yomogi", cursive;
 
-  --background: 30 20% 95%;
+  --background: hsl(30 20% 95%);
   --foreground: 0 0% 0%;
   --primary: hsl(225, 73%, 60%);
   --primary-foreground: 0 0% 100%;
@@ -11,15 +11,18 @@
   --border: hsl(0 0% 75%);
 
   --border-outline: hsl(0 0% 85%);
-  
+
 
   --ghost-neutral-bg: 0 0% 0%;
-  --ghost-neutral-bg-h: hsl(0 0% 95%);
-
+  --ghost-neutral-bg-h: hsl(0 0% 90%);
 
   --ghost-contrast-foreground: hsl(0, 0%, 93%);
   --ghost-contrast-bg: hsl(0 0% 13%);
   --ghost-contrast-bg-h: hsl(0 0% 20%);
+
+  --text-neutral: hsl(0, 0%, 35%);
+  --text-neutral-h: hsl(0, 0%, 10%);
+  --text-neutral-active: hsl(0, 0%, 5%);
 }
 
 [data-style="aodesu"],
@@ -27,8 +30,11 @@
  {
   --font-branch: "Yomogi", cursive;
 
-  --background: 30 20% 10%;
+  --background: hsl(0, 0%, 4%);
   --foreground: 0 0% 100%;
+
+  --sandbox-bg: hsl(0, 0%, 2%);
+
   --primary: hsl(225, 73%, 57%);
   --primary-h: hsl(255 55% 45%);
   --primary-foreground: 0 0% 0%;
@@ -37,7 +43,7 @@
   --secondary-foreground: 0 0% 100%;
   --contrast: hsl(0 0% 93%);
   --contrast-h: hsl(0 0% 80%);
-  --border: hsl(0 0% 30%);
+  --border: hsl(0 0% 15%);
 
   --border-outline: hsl(0 0% 20%);
 
@@ -47,6 +53,10 @@
   --ghost-contrast-foreground: hsl(0, 0%, 7%);
   --ghost-contrast-bg: hsl(0 0% 93%);
   --ghost-contrast-bg-h: hsl(0 0% 80%);
+
+  --text-neutral: hsl(0, 0%, 55%);
+  --text-neutral-h: hsl(0,0%, 80%);
+  --text-neutral-active: hsl(0,0%, 100%);
 
   --popover: hsl(0 0% 15%);
   --popover-foreground: hsl(0 0% 90%);

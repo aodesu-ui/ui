@@ -1,11 +1,11 @@
 
 import '@/registry/aodesu/theme.css';
 import '@/registry/candy/theme.css';
+import { ThemeProvider } from '@/registry/theme';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Header } from './Header';
-import { ThemeProvider } from '@/registry/theme';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,15 +33,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ThemeProvider isRoot styleConfig={styleConfig}>
-          <Header />
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <ThemeProvider isRoot styleConfig={styleConfig}>
+      <html lang="es">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+            <Header />
+            {children}
+        </body>
+      </html>
+    </ThemeProvider>
   );
 }

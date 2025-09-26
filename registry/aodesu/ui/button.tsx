@@ -11,13 +11,14 @@ const buttonVariants = cva(
       variant: {
         ghost: {},
         contained: {},
-        outlined: "border border-transparent"
+        outlined: "border border-transparent",
+        text: "!px-1.5 !py-0",
       },
       color: {
         neutral: {},
         primary: {},
         secondary: {},
-        contrast: {}
+        contrast: {},
       },
       size: {
         default: "h-9 rounded-lg px-4 py-2 has-[>svg]:px-3",
@@ -28,18 +29,25 @@ const buttonVariants = cva(
       {
         variant: "ghost",
         color: "neutral",
-        className: "hover:bg-[var(--ghost-neutral-bg-h)]"
+        className: "hover:bg-[var(--ghost-neutral-bg-h)]",
       },
       {
         variant: "ghost",
         color: "contrast",
-        className: "bg-[var(--ghost-contrast-bg)] text-[var(--ghost-contrast-foreground)] hover:bg-[var(--ghost-contrast-bg-h)]"
+        className:
+          "bg-[var(--ghost-contrast-bg)] text-[var(--ghost-contrast-foreground)] hover:bg-[var(--ghost-contrast-bg-h)]",
       },
       {
         variant: "outlined",
         color: "neutral",
-        className: "border-[var(--border-outline)]"
-      }
+        className: "border-[var(--border-outline)]",
+      },
+      {
+        variant: "text",
+        color: "neutral",
+        className:
+          "text-[var(--text-neutral)] hover:text-[var(--text-neutral-h)] active:text-[var(--text-neutral-active)] active:bg-[var(--ghost-neutral-bg-h)]",
+      },
     ],
     defaultVariants: {
       variant: "ghost",

@@ -1,10 +1,14 @@
-"use client"
+"use client";
 import { Button } from "@/registry/aodesu/ui/button";
-import { DropdownButton, DropdownMenuItem } from "@/registry/aodesu/ui/dropdown-menu";
+import {
+  DropdownButton,
+  DropdownMenuItem,
+} from "@/registry/aodesu/ui/dropdown-menu";
 import { useThemeContext } from "@/registry/theme";
 import { ChevronDown, Menu, Moon, Sun } from "lucide-react";
+import { SVGProps } from "react";
 
-const AodesuIcon = (props: any) => {
+const AodesuIcon = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       viewBox="0 0 315 350"
@@ -29,13 +33,12 @@ const AodesuIcon = (props: any) => {
         fill="currentColor"
       ></path>
     </svg>
-  )
-}
+  );
+};
 
 export const Header = () => {
-  const { style, availableStyles, setStyle, theme, setTheme, availableThemes } = useThemeContext();
-  
-  console.log(availableThemes)
+  const { style, availableStyles, setStyle, theme, setTheme, availableThemes } =
+    useThemeContext();
 
   return (
     <header className="flex border-b border-[var(--border)] justify-center">
@@ -80,7 +83,7 @@ export const Header = () => {
                   setStyle(s);
                 }}
               >
-                <AodesuIcon style={{ opacity: s === style ? 1 : .5}}/>
+                <AodesuIcon style={{ opacity: s === style ? 1 : 0.5 }} />
                 {s}
               </DropdownMenuItem>
             ))}
@@ -93,8 +96,8 @@ export const Header = () => {
                   setTheme(t);
                 }}
                 variant="ghost"
-                color={t === theme ? 'contrast' : 'neutral'}
-                className="w-full justify-start" 
+                color={t === theme ? "contrast" : "neutral"}
+                className="w-full justify-start"
               >
                 {t === "dark" && <Moon />}
                 {t === "light" && <Sun />}
