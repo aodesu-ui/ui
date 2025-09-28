@@ -7,6 +7,9 @@
   --background: hsl(20, 75%, 95%);
   --foreground: hsl(215, 28%, 17%);
 
+  --popover: hsl(0, 10%, 90%);
+  --popover-foreground: hsl(0 0% 0%);
+
   --primary: hsl(335, 73%, 58%);
   --primary-foreground: #ffffff;
 
@@ -18,7 +21,7 @@
 
 
   --ghost-neutral-bg: 0 0% 0%;
-  --ghost-neutral-bg-h: hsl(20 75% 90%);
+  --ghost-neutral-bg-h: hsl(20 75% 85%);
 
   --ghost-contrast-foreground: hsl(215, 28%, 17%);
   --ghost-contrast-bg: hsl(200 75% 92%);

@@ -1,63 +1,79 @@
-@import url('https://fonts.googleapis.com/css2?family=Yomogi&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Charm:wght@400;700&display=swap');
 [data-style="aodesu"][data-theme="light"] {
-  --font-branch: "Yomogi", cursive;
+  --font-branch: "Charm", cursive;
 
-  --background: hsl(0 0% 95%);
+  --background: 0 0% 95%;
   --foreground: 0 0% 0%;
-  --primary: hsl(225, 73%, 60%);
+  --foreground-light: 0 0% 10%;
+  --inverse-foreground: 0 0% 100%;
+
+  --sandbox-bg: 0 0% 100%;
+
+  --neutral: 0 0% 80%;
+  --neutral-dark: 0 0% 90%;
+  --neutral-light: 0 0% 70%;
+
+  --primary: 225 72% 57%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 30 10% 50%;
+  --primary-dark: 225 55% 45%;
+  --primary-light: 225 68% 61%;
+
+  --secondary: 258 72% 61%;
+  --secondary-dark: 258 45% 49%;
+  --secondary-light: 258 72% 68%;
   --secondary-foreground: 0 0% 100%;
-  --border: hsl(0 0% 75%);
 
-  --border-outline: hsl(0 0% 85%);
+  --contrast: 0 0% 20%;
+  --contrast-light: 0 0% 10%;
+  --contrast-dark: 0 0% 30%;
 
+  --border: 0 0% 75%;
+  --border-outline: 0 0% 85%;
 
-  --ghost-neutral-bg: hsl(0 0% 0%);
-  --ghost-neutral-bg-h: hsl(0 0% 90%);
+  --ghost-neutral-bg: 0 0% 0%;
+  --ghost-neutral-bg-h: 0 0% 90%;
 
-  --ghost-contrast-foreground: hsl(0, 0%, 93%);
-  --ghost-contrast-bg: hsl(0 0% 13%);
-  --ghost-contrast-bg-h: hsl(0 0% 20%);
+  --ghost-contrast-foreground: 0 0% 93%;
+  --ghost-contrast-bg: 0 0% 13%;
+  --ghost-contrast-bg-h: 0 0% 20%;
 
-  --text-neutral: hsl(0, 0%, 35%);
-  --text-neutral-h: hsl(0, 0%, 10%);
-  --text-neutral-active: hsl(0, 0%, 5%);
+  --text-neutral: 0 0% 35%;
+  --text-neutral-h: 0 0% 10%;
+  --text-neutral-active: 0 0% 5%;
 }
 
 [data-style="aodesu"],
-[data-style="aodesu"][data-theme="dark"]
- {
-  --font-branch: "Yomogi", cursive;
+[data-style="aodesu"][data-theme="dark"] {
+  --font-branch: "Charm", cursive;
 
-  --background: hsl(0, 0%, 4%);
-  --foreground: 0 0% 100%;
+  --background: 0 0% 4%;
+  --foreground: 0 0% 80%;
+  --foreground-light: 0 0% 100%;
+  --inverse-foreground: 0 0% 10%;
 
-  --sandbox-bg: hsl(0, 0%, 2%);
+  --sandbox-bg: 0 0% 3%;
 
-  --primary: hsl(225, 73%, 57%);
-  --primary-h: hsl(255 55% 45%);
-  --primary-foreground: 0 0% 0%;
-  --secondary: hsl(255,73%,61%);
-  --secondary-h: hsl(255 46% 49%);
+  --neutral: 0 0% 20%;
+  --neutral-dark: 0 0% 14%;
+  --neutral-light: 0 0% 27%;
+
+  --primary: 225 72% 57%;
+  --primary-dark: 225 55% 45%;
+  --primary-light: 225 68% 61%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 258 72% 61%;
+  --secondary-dark: 258 45% 49%;
+  --secondary-light: 258 72% 68%;
   --secondary-foreground: 0 0% 100%;
-  --contrast: hsl(0 0% 93%);
-  --contrast-h: hsl(0 0% 80%);
-  --border: hsl(0 0% 15%);
 
-  --border-outline: hsl(0 0% 20%);
+  --contrast: 0 0% 80%;
+  --contrast-light: 0 0% 95%;
+  --contrast-dark: 0 0% 70%;
 
-  --ghost-neutral-bg: hsl(0 0% 0%);
-  --ghost-neutral-bg-h: hsl(0 0% 13%);
+  --border: 0 0% 15%;
+  --border-outline: 0 0% 20%;
 
-  --ghost-contrast-foreground: hsl(0, 0%, 7%);
-  --ghost-contrast-bg: hsl(0 0% 93%);
-  --ghost-contrast-bg-h: hsl(0 0% 80%);
-
-  --text-neutral: hsl(0, 0%, 55%);
-  --text-neutral-h: hsl(0,0%, 80%);
-  --text-neutral-active: hsl(0,0%, 100%);
-
-  --popover: hsl(0 0% 15%);
-  --popover-foreground: hsl(0 0% 90%);
+  --popover: 0 0% 15%;
+  --popover-foreground: 0 0% 90%;
 }

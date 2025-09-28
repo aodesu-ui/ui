@@ -9,7 +9,7 @@ import { Button } from "./button";
 
 // ===== Variants =====
 const dropdownMenuContentVariants = cva(
-  "z-50 min-w-[8rem] rounded-md border border-[var(--border)] bg-popover text-popover-foreground shadow-md p-1 " +
+  "z-50 min-w-[8rem] rounded-md border border-[hsl(var(--border))] bg-[hsl(var(--background))] text-popover-foreground shadow-md p-1 " +
     "data-[state=open]:animate-in data-[state=closed]:animate-out " +
     "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 " +
     "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 " +
@@ -277,7 +277,7 @@ function DropdownMenuSubContent({
     <DropdownMenuPrimitive.SubContent
       data-slot="dropdown-menu-sub-content"
       className={cn(
-        "z-50 min-w-[8rem] rounded-md border bg-popover text-popover-foreground shadow-lg p-1 " +
+        "z-50 min-w-[8rem] rounded-md border bg-[hsl(var(--background))] text-popover-foreground shadow-lg p-1 " +
           "data-[state=open]:animate-in data-[state=closed]:animate-out " +
           "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 " +
           "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 " +

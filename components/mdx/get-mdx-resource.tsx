@@ -6,7 +6,7 @@ import path from "path";
 import { getToc } from "./get-toc";
 
 export async function getMdxSource(slug: string, lang?: string) {
-  const basePath = path.join(process.cwd(), "content", "docs");
+  const basePath = path.join(process.cwd(), "content", "docs", slug);
   const file =
     lang && fs.existsSync(path.join(basePath, `${slug}-${lang}.mdx`))
       ? `${slug}-${lang}.mdx`
