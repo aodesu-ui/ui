@@ -9,9 +9,10 @@ interface tocProps {
 export default function TOC({ toc }: { toc: tocProps[] }) {
 
   const ThreadSeparator = ({ depth }: { depth: number}) => {
-    return Array.from({ length: depth }).map((i) => {
+    return Array.from({ length: depth }).map((_, index) => {
       return (
         <div
+          key={index}
           className="h-7 ml-2 mr-3"
           style={{
             borderLeft:
