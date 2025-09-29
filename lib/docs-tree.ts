@@ -1,4 +1,4 @@
-// lib/mdx/get-docs-tree.ts
+// lib/mdx/docs-tree.ts
 import fs from "fs";
 import path from "path";
 

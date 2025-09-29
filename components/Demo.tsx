@@ -4,13 +4,12 @@ import path from "path";
 import { Sandbox } from "./mdx/Sandbox";
 
 interface DemoProps {
-  type: string; // e.g. if component or something else
-  name: string; // e.g., folder name like 'buttons'
-  component: string; // e.g., file name like 'Primary'
+  folder: string; // e.g. folder path. "/components/button" = "@/content/docs/components/button"
+  file: string; // e.g., file name like 'BasicButton' = {folder}/examples/BasicButton
 }
 
-export async function Demo({ type, name, component }: DemoProps) {
-  const mod = await import(`@/content/docs/${type}/${name}/examples/${component}.tsx`);
+export async function Demo({ folder, file }: DemoProps) {
+  const mod = await import(`@/content/docs/${folder}/examples/${file}.tsx`);
   const Component = mod.default;
 
   // Assuming '@' aliases to the 'src' directory (common in Next.js tsconfig.json).
@@ -18,10 +17,9 @@ export async function Demo({ type, name, component }: DemoProps) {
   const filePath = path.join(
     process.cwd(),
     "content/docs",
-    type,
-    name,
+    folder,
     "examples",
-    `${component}.tsx`
+    `${file}.tsx`
   );
   const code = await fs.readFile(filePath, "utf-8");
 

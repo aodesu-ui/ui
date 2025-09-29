@@ -1,4 +1,6 @@
+import { Button } from "@/registry/aodesu/ui/button";
 import { Demo } from "../Demo";
+import Link from "next/link";
 
 const heading = "mt-10 mb-4 font-bold font-ubuntu";
 
@@ -59,4 +61,6 @@ export const components = {
     />
   ),
   Demo: (props: any) => <Demo {...props} />,
+  Button: (props: any) => <Button {...props} />,
+  Link: (props: any) => <Link {...props} />
 };

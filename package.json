@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "pnpm generate:docs && next dev --turbopack",
+    "docs:watch": "nodemon --watch content/docs --ext mdx --exec 'pnpm generate:docs'",
+    "generate:docs": "tsx scripts/generate-docs-index.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -44,8 +46,10 @@
     "@types/react-dom": "19.1.2",
     "eslint": "^9.32.0",
     "eslint-config-next": "15.3.1",
+    "nodemon": "^3.1.10",
     "raw-loader": "^4.0.2",
     "tailwindcss": "^4.1.11",
+    "tsx": "^4.20.6",
     "typescript": "^5.9.2"
   },
   "pnpm": {

@@ -40,6 +40,8 @@ export function ThemeProvider<T extends StyleConfig>({
 
   // Initialize from localStorage on client-side
   useEffect(() => {
+    if (!isRoot) return;
+    
     const storedStyle = localStorage.getItem("style") as Style<T> | null;
     const storedTheme = localStorage.getItem("theme") as Theme | null;
 

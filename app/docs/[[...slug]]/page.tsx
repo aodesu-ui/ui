@@ -5,10 +5,32 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Sidebar from "./Sidebar";
 import TOC from "./TOC";
+import { Metadata, ResolvingMetadata } from "next";
 
 interface PageProps {
   params: Promise<{ slug?: string[] }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+type Props = {
+  params: Promise<{ slug?: string[] }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { slug } = await params;
+
+  const slughPath = slug ? slug.join("/") : "";
+
+  const { frontmatter } = await getMdxSource(slughPath);
+
+  return{
+    title: typeof frontmatter?.title === "string" ? `${frontmatter?.title} - aodesu ui` : "aodesu ui",
+    description: typeof frontmatter?.description === "string" ? frontmatter?.description : "Bienvenido a aodesu ui"
+  }
 }
 
 export default async function DocPage({ params, searchParams }: PageProps) {
@@ -24,20 +46,17 @@ export default async function DocPage({ params, searchParams }: PageProps) {
   const { content, toc, frontmatter } = await getMdxSource(slugPath, lang);
   const { prev, next } = getPrevNext(slugPath);
 
-  console.log(frontmatter)
-
-  return (
-    <div className="flex">
-      <Sidebar />
-      <article className="max-w-4xl w-full flex-10/12 px-8">
-        <div className="flex items-center justify-between pt-6">
-          {typeof frontmatter?.title === "string" ? (
-            <h1 className="flex-1 text-4xl font-(family-name:--font-branch) font-extrabold">
-              {frontmatter.title}
-            </h1>
-          ) : null}
+  const Pagination = ({ title = false }: { title?: boolean}) => {
+    return(
+      <div className="flex flex-wrap pt-6 gap-2 gap-y-8">
+        {title && typeof frontmatter?.title === "string" ? (
+          <h1 className="flex-1 shrink-0 text-4xl font-(family-name:--font-branch) font-extrabold">
+            {frontmatter.title}
+          </h1>
+        ) : null}
+        <div className="flex flex-1 ml-auto gap-2 shrink justify-between md:justify-end">
           {prev ? (
-            <Button asChild>
+            <Button asChild variant="outlined">
               <Link href={`/docs/${prev.slug}?lang=${lang}`}>
                 <ArrowLeft /> {prev.title}
               </Link>
@@ -46,7 +65,7 @@ export default async function DocPage({ params, searchParams }: PageProps) {
             <div />
           )}
           {next ? (
-            <Button asChild>
+            <Button asChild variant="outlined">
               <Link href={`/docs/${next.slug}?lang=${lang}`}>
                 {next.title} <ArrowRight />
               </Link>
@@ -55,20 +74,18 @@ export default async function DocPage({ params, searchParams }: PageProps) {
             <div />
           )}
         </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="flex">
+      <Sidebar />
+      <article className="max-w-4xl w-full flex-10/12 px-8">
+        <Pagination title />
         {content && <>{content}</>}
 
-        <div className="flex justify-between mt-12 border-t pt-6">
-          {prev ? (
-            <Link href={`/docs/${prev.slug}?lang=${lang}`}>← {prev.title}</Link>
-          ) : (
-            <div />
-          )}
-          {next ? (
-            <Link href={`/docs/${next.slug}?lang=${lang}`}>{next.title} →</Link>
-          ) : (
-            <div />
-          )}
-        </div>
+        <Pagination />
       </article>
       <TOC toc={toc} />
     </div>

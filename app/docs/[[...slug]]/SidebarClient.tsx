@@ -1,148 +1,138 @@
 "use client";
 
-import { docsIndex, type DocEntry } from "@/lib/mdx/docs-index";
+import { DocEntry, docsIndex } from "@/lib/mdx/docs-index";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/registry/aodesu/ui/button";
 import { ChevronDown } from "lucide-react";
-import Link from "next/link";
-import { useMemo, useState } from "react";
 
-type TreeNode = {
-  name: string;
-  slug: string;
-  title: string;
-  order?: number;
-  isPage?: boolean;
-  children: TreeNode[];
-};
-
-function humanize(part: string) {
-  return part.replace(/[-_]/g, " ").replace(/^\w/, (c) => c.toUpperCase());
-}
-
-function buildTree(entries: DocEntry[]): TreeNode[] {
-  const rootMap = new Map<string, TreeNode>();
-
-  // process entries in order to preserve ordering heuristic
-  const sorted = [...entries].sort((a, b) => a.order - b.order);
-
-  for (const e of sorted) {
-    const parts = e.slug.split("/").filter(Boolean);
-    let pathSoFar = "";
-    let parentMap = rootMap;
-
-    for (let i = 0; i < parts.length; i++) {
-      const part = parts[i];
-      pathSoFar = pathSoFar ? `${pathSoFar}/${part}` : part;
-      let node = parentMap.get(part) as TreeNode | undefined;
-
-      if (!node) {
-        node = {
-          name: part,
-          slug: pathSoFar,
-          title: humanize(part),
-          order: undefined,
-          isPage: false,
-          children: [],
-        };
-        parentMap.set(part, node);
-      }
-
-      // if this part is the final segment, mark page and set title/order
-      if (i === parts.length - 1) {
-        node.isPage = true;
-        node.title = e.title ?? node.title;
-        node.order = e.order;
-      }
-
-      // prepare parentMap for next level (use a map on node children keyed by name)
-      // we store children in array but need a map for quick lookup across iterations
-      if (!(node as any).__childMap) {
-        (node as any).__childMap = new Map<string, TreeNode>();
-        for (const ch of node.children)
-          (node as any).__childMap.set(ch.name, ch);
-      }
-      parentMap = (node as any).__childMap;
-    }
-  }
-
-  // convert maps to arrays and sort children by order (fallback insertion order)
-  function finalize(map: Map<string, TreeNode>): TreeNode[] {
-    const arr = Array.from(map.values());
-    for (const n of arr) {
-      if ((n as any).__childMap) {
-        n.children = finalize((n as any).__childMap);
-        delete (n as any).__childMap;
-      }
-      // ensure order: pages keep their explicit order; folders get min child order if missing
-      if (n.order == null && n.children.length > 0) {
-        const childOrders = n.children.map((c) => c.order ?? Infinity);
-        n.order = Math.min(...childOrders);
-        if (!isFinite(n.order)) n.order = undefined;
-      }
-    }
-    arr.sort((a, b) => (a.order ?? Infinity) - (b.order ?? Infinity));
-    return arr;
-  }
-
-  return finalize(rootMap);
-}
-
-function SidebarItem({ node }: { node: TreeNode }) {
+function SidebarItem({ node, currentLang }: { node: DocEntry; currentLang: string }) {
+  const pathname = usePathname();
   const [open, setOpen] = useState(true);
-  const hasChildren = node.children.length > 0;
+  
+  // Verificar si es una página activa (considerando el idioma)
+  const isActive = pathname === `/docs/${node.slug}`;
+  
+  // Verificar si este nodo tiene un archivo index (es collapsable + link)
+  const hasIndexFile = node.children?.some(child => 
+    child.slug === `${node.slug}/index` || child.slug === node.slug
+  );
 
-  // leaf page (no children)
-  if (node.isPage && !hasChildren) {
+  // Tipo 1: Carpeta con index.mdx (Collapse + Link)
+  if (node.children && node.children.length > 0 && hasIndexFile) {
     return (
-      <Button asChild className="w-full justify-start" size="small">
-        <Link
-          href={`/docs/${node.slug}`}
-        >
-          {node.title}
-        </Link>
-      </Button>
+      <div className="mb-2">
+        <Button size="small">
+          <div
+            role="button"
+            onClick={() => setOpen(!open)}
+            aria-label={open ? "Contraer" : "Expandir"}
+          >
+            <ChevronDown className={open ? 'rotate-0' : '-rotate-90'} />
+          </div>
+          <Link
+            href={`/docs/${node.slug}?lang=${currentLang}`}
+            className={`flex-1 font-semibold hover:underline ${
+              isActive ? "text-primary font-bold" : ""
+            }`}
+          >
+            {node.title}
+          </Link>
+        </Button>
+
+        {open && (
+          <div className="ml-4 mt-1 space-y-1 border-l pl-2">
+            {node.children
+              .filter(child => !child.slug.endsWith('/index') && child.slug !== node.slug)
+              .map((child) => (
+                <SidebarItem key={child.slug} node={child} currentLang={currentLang} />
+              ))}
+          </div>
+        )}
+      </div>
     );
   }
 
-  // folder (may also be a page)
-  return (
-    <div className="mb-2">
-      <Button
-        onClick={() => setOpen((s) => !s)}
-        className="w-full justify-start"
-        size="small"
-      >
-        <ChevronDown className={open ? "rotate-0" : "-rotate-90"} />
-        {node.title}
-      </Button>
+  // Tipo 2: Carpeta sin index.mdx (Solo Collapsable)
+  if (node.children && node.children.length > 0) {
+    return (
+      <div className="mb-2">
+        <button
+          onClick={() => setOpen(!open)}
+          className="font-semibold hover:underline text-left w-full flex items-center gap-1"
+        >
+          <span className="text-xs">{open ? "▼" : "▶"}</span>
+          {node.title}
+        </button>
 
-      {open && (
-        <div className="ml-4 mt-1 space-y-1">
-          {node.isPage && (
-            <Link
-              href={`/docs/${node.slug}`}
-              className="block px-2 py-1 hover:bg-accent rounded"
-            >
-              {node.title}
-            </Link>
-          )}
-          {node.children.map((child) => (
-            <SidebarItem key={child.slug} node={child} />
-          ))}
-        </div>
-      )}
-    </div>
+        {open && (
+          <div className="ml-4 mt-1 space-y-1 border-l pl-2">
+            {node.children.map((child) => (
+              <SidebarItem key={child.slug} node={child} currentLang={currentLang} />
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  // Tipo 3: Enlace simple (archivo en root o hoja del árbol)
+  return (
+    <Link
+      href={`/docs/${node.slug}?lang=${currentLang}`}
+      className={`block px-2 py-1 hover:bg-accent rounded transition-colors ${
+        isActive ? "bg-accent font-medium text-primary" : ""
+      }`}
+    >
+      {node.title}
+    </Link>
   );
 }
 
 export default function SidebarClient() {
-  const tree = useMemo(() => buildTree(docsIndex), []);
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const currentLang = searchParams.get('lang') ?? "es";
+
+  const handleLang = (lang: string) => {
+    const params = new URLSearchParams(searchParams);
+    params.set("lang", lang);
+    router.replace(`${pathname}?${params.toString()}`);
+  }
 
   return (
-    <aside className="w-64 p-4 border-r overflow-y-auto">
-      {tree.map((node) => (
-        <SidebarItem key={node.slug} node={node} />
-      ))}
+    <aside className="w-64 w-full p-4 border-r overflow-y-auto">
+      {/* Selector de idioma opcional */}
+      <div className="mb-4 flex gap-2">
+        <button
+          onClick={() => handleLang('es')}
+          className={`px-3 py-1 text-sm rounded border ${
+            currentLang === 'es' 
+              ? 'bg-primary text-primary-foreground' 
+              : 'bg-background hover:bg-accent'
+          }`}
+        >
+          ES
+        </button>
+        <button
+          onClick={() => handleLang('en')}
+          className={`px-3 py-1 text-sm rounded border ${
+            currentLang === 'en' 
+              ? 'bg-primary text-primary-foreground' 
+              : 'bg-background hover:bg-accent'
+          }`}
+        >
+          EN
+        </button>
+      </div>
+
+      <nav className="space-y-1">
+        {docsIndex.map((node) => (
+          <SidebarItem key={node.slug} node={node} currentLang={currentLang} />
+        ))}
+      </nav>
     </aside>
   );
 }

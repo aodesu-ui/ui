@@ -1,7 +1,9 @@
 // components/mdx/Sandbox.tsx
 "use client";
 
+import { Button } from "@/registry/aodesu/ui/button";
 import { useThemeContext } from "@/registry/theme";
+import { Eye, EyeOff } from "lucide-react";
 import { Highlight, themes } from "prism-react-renderer";
 import { useState } from "react";
 
@@ -19,12 +21,13 @@ export function Sandbox({ code, children }: SandboxProps) {
       <div className="p-4 bg-[hsl(var(--sandbox-bg))] items-center flex justify-center gap-3 flex-wrap">
         {children}
       </div>
-      <button
-        className="text-sm text-blue-600 font-medium px-3 py-2 border-t w-full text-left hover:bg-gray-100"
+      <Button
+        className="rounded-none w-full border-t"
         onClick={() => setShowCode(!showCode)}
       >
+        {showCode ? <EyeOff /> : <Eye />}
         {showCode ? "Ocultar código" : "Ver código"}
-      </button>
+      </Button>
 
       {showCode && (
         <Highlight theme={theme === "dark" ? themes.vsDark : themes.oneLight} code={code} language="tsx">
