@@ -1,11 +1,12 @@
-import { getPrevNext } from "@/lib/mdx/docs-index";
+// app/docs/[[...slug]]/page.tsx
+import { getPrevNext } from "@/components/mdx/pages-config";
 import { getMdxSource } from "@/lib/mdx/get-mdx-resource";
 import { Button } from "@/registry/aodesu/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import Sidebar from "./Sidebar";
 import TOC from "./TOC";
-import { Metadata, ResolvingMetadata } from "next";
 
 interface PageProps {
   params: Promise<{ slug?: string[] }>;
@@ -13,24 +14,29 @@ interface PageProps {
 }
 
 type Props = {
-  params: Promise<{ slug?: string[] }>
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
-}
+  params: Promise<{ slug?: string[] }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
 export async function generateMetadata(
   { params, searchParams }: Props,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { slug } = await params;
+  const slugPath = slug ? slug.join("/") : "getting-started"; // Página por defecto
 
-  const slughPath = slug ? slug.join("/") : "";
+  const { frontmatter } = await getMdxSource(slugPath);
 
-  const { frontmatter } = await getMdxSource(slughPath);
-
-  return{
-    title: typeof frontmatter?.title === "string" ? `${frontmatter?.title} - aodesu ui` : "aodesu ui",
-    description: typeof frontmatter?.description === "string" ? frontmatter?.description : "Bienvenido a aodesu ui"
-  }
+  return {
+    title:
+      typeof frontmatter?.title === "string"
+        ? `${frontmatter?.title} - aodesu ui`
+        : "aodesu ui",
+    description:
+      typeof frontmatter?.description === "string"
+        ? frontmatter?.description
+        : "Bienvenido a aodesu ui",
+  };
 }
 
 export default async function DocPage({ params, searchParams }: PageProps) {
@@ -41,13 +47,14 @@ export default async function DocPage({ params, searchParams }: PageProps) {
       ? resolvedSearchParams.lang
       : "es";
 
-  const slugPath = slug ? slug.join("/") : "";
+  const slugPath = slug ? slug.join("/") : "getting-started";
+  const currentPathname = `/docs/${slugPath}`;
 
   const { content, toc, frontmatter } = await getMdxSource(slugPath, lang);
-  const { prev, next } = getPrevNext(slugPath);
+  const { prev, next } = getPrevNext(currentPathname);
 
-  const Pagination = ({ title = false }: { title?: boolean}) => {
-    return(
+  const Pagination = ({ title = false }: { title?: boolean }) => {
+    return (
       <div className="flex flex-wrap pt-6 gap-2 gap-y-8">
         {title && typeof frontmatter?.title === "string" ? (
           <h1 className="flex-1 shrink-0 text-4xl font-(family-name:--font-branch) font-extrabold">
@@ -57,7 +64,7 @@ export default async function DocPage({ params, searchParams }: PageProps) {
         <div className="flex flex-1 ml-auto gap-2 shrink justify-between md:justify-end">
           {prev ? (
             <Button asChild variant="outlined">
-              <Link href={`/docs/${prev.slug}?lang=${lang}`}>
+              <Link href={`${prev.pathname}?lang=${lang}`}>
                 <ArrowLeft /> {prev.title}
               </Link>
             </Button>
@@ -66,7 +73,7 @@ export default async function DocPage({ params, searchParams }: PageProps) {
           )}
           {next ? (
             <Button asChild variant="outlined">
-              <Link href={`/docs/${next.slug}?lang=${lang}`}>
+              <Link href={`${next.pathname}?lang=${lang}`}>
                 {next.title} <ArrowRight />
               </Link>
             </Button>
@@ -75,8 +82,8 @@ export default async function DocPage({ params, searchParams }: PageProps) {
           )}
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   return (
     <div className="flex">
@@ -84,7 +91,6 @@ export default async function DocPage({ params, searchParams }: PageProps) {
       <article className="max-w-4xl w-full flex-10/12 px-8">
         <Pagination title />
         {content && <>{content}</>}
-
         <Pagination />
       </article>
       <TOC toc={toc} />

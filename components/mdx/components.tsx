@@ -1,6 +1,10 @@
+import { cn } from "@/lib/utils";
 import { Button } from "@/registry/aodesu/ui/button";
-import { Demo } from "../Demo";
 import Link from "next/link";
+import { UiComponent } from "../Component";
+import { Demo } from "../Demo";
+import { CodeBlockCommand } from "../code-block-command";
+import { CopyButton } from "../copy-button";
 
 const heading = "mt-10 mb-4 font-bold font-ubuntu";
 
@@ -54,13 +58,65 @@ export const components = {
   ol: (props: any) => <ol className="ml-8 list-decimal" {...props} />,
   li: (props: any) => <li className="mt-1" {...props} />,
   p: (props: any) => <p className="my-4 font-sans" {...props} />,
-  code: (props: any) => (
-    <code
-      className="text-[.875rem] border font-mono whitespace-nowrap rounded-sm px-1"
+  blockquote: ({ className, ...props }: React.ComponentProps<"blockquote">) => (
+    <blockquote
+      className={cn("mt-6 border-l-2 pl-6 italic", className)}
       {...props}
     />
   ),
+  code: ({
+    className,
+    __raw__,
+    __src__,
+    __npm__,
+    __yarn__,
+    __pnpm__,
+    __bun__,
+    ...props
+  }: React.ComponentProps<"code"> & {
+    __raw__?: string;
+    __src__?: string;
+    __npm__?: string;
+    __yarn__?: string;
+    __pnpm__?: string;
+    __bun__?: string;
+  }) => {
+    // Inline Code.
+    if (typeof props.children === "string") {
+      return (
+        <code
+          className={cn(
+            "bg-muted relative rounded-md px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] break-words outline-none",
+            className
+          )}
+          {...props}
+        />
+      );
+    }
+
+    // npm command.
+    const isNpmCommand = __npm__ && __yarn__ && __pnpm__ && __bun__;
+    if (isNpmCommand) {
+      return (
+        <CodeBlockCommand
+          __npm__={__npm__}
+          __yarn__={__yarn__}
+          __pnpm__={__pnpm__}
+          __bun__={__bun__}
+        />
+      );
+    }
+
+    // Default codeblock.
+    return (
+      <>
+        {__raw__ && <CopyButton value={__raw__} src={__src__} />}
+        <code {...props} />
+      </>
+    );
+  },
   Demo: (props: any) => <Demo {...props} />,
+  UiComponent: (props: any) => <UiComponent {...props} />,
   Button: (props: any) => <Button {...props} />,
-  Link: (props: any) => <Link {...props} />
+  Link: (props: any) => <Link {...props} />,
 };

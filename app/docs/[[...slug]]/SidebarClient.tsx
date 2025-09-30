@@ -1,75 +1,80 @@
+// components/docs/SidebarClient.tsx
 "use client";
 
-import { DocEntry, docsIndex } from "@/lib/mdx/docs-index";
-import Link from "next/link";
-import { useState, useEffect } from "react";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { pages, type aodesuPage } from "@/components/mdx/pages-config";
+import { cn } from "@/lib/utils";
 import { Button } from "@/registry/aodesu/ui/button";
 import { ChevronDown } from "lucide-react";
+import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 
-function SidebarItem({ node, currentLang }: { node: DocEntry; currentLang: string }) {
+function SidebarItem({ page, currentLang, level = 0 }: {
+  page: aodesuPage;
+  currentLang: string;
+  level?: number;
+}) {
   const pathname = usePathname();
-  const [open, setOpen] = useState(true);
-  
-  // Verificar si es una página activa (considerando el idioma)
-  const isActive = pathname === `/docs/${node.slug}`;
-  
-  // Verificar si este nodo tiene un archivo index (es collapsable + link)
-  const hasIndexFile = node.children?.some(child => 
-    child.slug === `${node.slug}/index` || child.slug === node.slug
-  );
+  const [open, setOpen] = useState(level < 1); // Expandir primeros niveles por defecto
 
-  // Tipo 1: Carpeta con index.mdx (Collapse + Link)
-  if (node.children && node.children.length > 0 && hasIndexFile) {
+  const isActive = pathname === page.pathname;
+  const hasChildren = page.children && page.children.length > 0;
+
+  // Es un subheader (solo título, no clickeable)
+  if (page.subheader) {
     return (
-      <div className="mb-2">
-        <Button size="small">
-          <div
-            role="button"
-            onClick={() => setOpen(!open)}
-            aria-label={open ? "Contraer" : "Expandir"}
-          >
-            <ChevronDown className={open ? 'rotate-0' : '-rotate-90'} />
-          </div>
-          <Link
-            href={`/docs/${node.slug}?lang=${currentLang}`}
-            className={`flex-1 font-semibold hover:underline ${
-              isActive ? "text-primary font-bold" : ""
-            }`}
-          >
-            {node.title}
-          </Link>
-        </Button>
-
-        {open && (
-          <div className="ml-4 mt-1 space-y-1 border-l pl-2">
-            {node.children
-              .filter(child => !child.slug.endsWith('/index') && child.slug !== node.slug)
-              .map((child) => (
-                <SidebarItem key={child.slug} node={child} currentLang={currentLang} />
-              ))}
-          </div>
-        )}
+      <div className={cn(
+        "text-xs font-semibold text-muted-foreground uppercase tracking-wide",
+        level === 0 ? "mt-6 mb-2" : "mt-4 mb-2",
+        level > 0 && "ml-4"
+      )}>
+        {page.subheader}
       </div>
     );
   }
 
-  // Tipo 2: Carpeta sin index.mdx (Solo Collapsable)
-  if (node.children && node.children.length > 0) {
+  // Es un grupo con hijos
+  if (hasChildren) {
     return (
-      <div className="mb-2">
-        <button
+      <div className="mb-1">
+        <Button
           onClick={() => setOpen(!open)}
-          className="font-semibold hover:underline text-left w-full flex items-center gap-1"
+          size="small"
+          variant={isActive ? 'contained' : 'ghost'}
+          className={cn(
+            "w-full justify-start text-left",
+          )}
         >
-          <span className="text-xs">{open ? "▼" : "▶"}</span>
-          {node.title}
-        </button>
+          {hasChildren && (
+            <ChevronDown className={cn(
+              "h-3 w-3 transition-transform",
+              !open && "-rotate-90"
+            )} />
+          )}
+          <span className="flex-1 text-sm font-medium">
+            {page.title}
+            {page.newFeature && (
+              <span className="ml-2 px-1.5 py-0.5 text-xs bg-green-100 text-green-800 rounded-full">
+                New
+              </span>
+            )}
+            {page.deprecated && (
+              <span className="ml-2 px-1.5 py-0.5 text-xs bg-gray-100 text-gray-800 rounded-full">
+                Deprecated
+              </span>
+            )}
+          </span>
+        </Button>
 
-        {open && (
+        {open && hasChildren && (
           <div className="ml-4 mt-1 space-y-1 border-l pl-2">
-            {node.children.map((child) => (
-              <SidebarItem key={child.slug} node={child} currentLang={currentLang} />
+            {page.children && page.children.map((child) => (
+              <SidebarItem
+                key={child.pathname}
+                page={child}
+                currentLang={currentLang}
+                level={level + 1}
+              />
             ))}
           </div>
         )}
@@ -77,16 +82,43 @@ function SidebarItem({ node, currentLang }: { node: DocEntry; currentLang: strin
     );
   }
 
-  // Tipo 3: Enlace simple (archivo en root o hoja del árbol)
+  // Es un grupo especial (como getting-started-group) - mostrar hijos directamente
+  if (hasChildren && page.pathname.includes('-group')) {
+    return (
+      <>
+        {page.children?.map((child) => (
+          <SidebarItem
+            key={child.pathname}
+            page={child}
+            currentLang={currentLang}
+            level={level}
+          />
+        ))}
+      </>
+    );
+  }
+
+  // Es un elemento hoja (página individual)
   return (
-    <Link
-      href={`/docs/${node.slug}?lang=${currentLang}`}
-      className={`block px-2 py-1 hover:bg-accent rounded transition-colors ${
-        isActive ? "bg-accent font-medium text-primary" : ""
-      }`}
-    >
-      {node.title}
-    </Link>
+    <Button className="w-full" size="small" asChild>
+      <Link
+        href={`${page.pathname}?lang=${currentLang}`}
+      >
+        <span className="flex-1">
+          {page.title}
+          {page.newFeature && (
+            <span className="ml-2 px-1.5 py-0.5 text-xs bg-green-100 text-green-800 rounded-full">
+              New
+            </span>
+          )}
+          {page.deprecated && (
+            <span className="ml-2 px-1.5 py-0.5 text-xs bg-gray-100 text-gray-800 rounded-full">
+              Deprecated
+            </span>
+          )}
+        </span>
+      </Link>
+    </Button>
   );
 }
 
@@ -103,36 +135,42 @@ export default function SidebarClient() {
   }
 
   return (
-    <aside className="w-64 w-full p-4 border-r overflow-y-auto">
-      {/* Selector de idioma opcional */}
-      <div className="mb-4 flex gap-2">
-        <button
-          onClick={() => handleLang('es')}
-          className={`px-3 py-1 text-sm rounded border ${
-            currentLang === 'es' 
-              ? 'bg-primary text-primary-foreground' 
-              : 'bg-background hover:bg-accent'
-          }`}
-        >
-          ES
-        </button>
-        <button
-          onClick={() => handleLang('en')}
-          className={`px-3 py-1 text-sm rounded border ${
-            currentLang === 'en' 
-              ? 'bg-primary text-primary-foreground' 
-              : 'bg-background hover:bg-accent'
-          }`}
-        >
-          EN
-        </button>
-      </div>
+    <aside className="flex flex-1 h-full p-2 border-r justify-end">
+      {/* Selector de idioma */}
+      <div className="w-64 overflow-y-auto">
+        <div className="mb-6 flex gap-2">
+          <button
+            onClick={() => handleLang("es")}
+            className={`px-3 py-1 text-sm rounded border ${
+              currentLang === "es"
+                ? "bg-primary text-primary-foreground"
+                : "bg-background hover:bg-accent"
+            }`}
+          >
+            ES
+          </button>
+          <button
+            onClick={() => handleLang("en")}
+            className={`px-3 py-1 text-sm rounded border ${
+              currentLang === "en"
+                ? "bg-primary text-primary-foreground"
+                : "bg-background hover:bg-accent"
+            }`}
+          >
+            EN
+          </button>
+        </div>
 
-      <nav className="space-y-1">
-        {docsIndex.map((node) => (
-          <SidebarItem key={node.slug} node={node} currentLang={currentLang} />
-        ))}
-      </nav>
+        <nav className="space-y-1 w-64">
+          {pages.map((page) => (
+            <SidebarItem
+              key={page.pathname}
+              page={page}
+              currentLang={currentLang}
+            />
+          ))}
+        </nav>
+      </div>
     </aside>
   );
 }
