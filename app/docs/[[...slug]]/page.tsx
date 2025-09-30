@@ -3,7 +3,7 @@ import { getPrevNext } from "@/components/mdx/pages-config";
 import { getMdxSource } from "@/lib/mdx/get-mdx-resource";
 import { Button } from "@/registry/aodesu/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
 import Link from "next/link";
 import Sidebar from "./Sidebar";
 import TOC from "./TOC";
@@ -19,8 +19,7 @@ type Props = {
 };
 
 export async function generateMetadata(
-  { params, searchParams }: Props,
-  parent: ResolvingMetadata
+  { params }: Props,
 ): Promise<Metadata> {
   const { slug } = await params;
   const slugPath = slug ? slug.join("/") : "getting-started"; // Página por defecto

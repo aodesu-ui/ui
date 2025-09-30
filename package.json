@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "pnpm generate:docs && next dev --turbopack",
-    "docs:watch": "nodemon --watch content/docs --ext mdx --exec 'pnpm generate:docs'",
-    "generate:docs": "tsx scripts/generate-docs-index.ts",
+    "dev": " next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

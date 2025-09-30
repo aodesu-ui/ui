@@ -4,14 +4,9 @@ import {
   DropdownButton,
   DropdownMenuItem,
 } from "@/registry/aodesu/ui/dropdown-menu";
-import { ThemeProvider, useThemeContext } from "@/registry/theme";
+import { useThemeContext } from "@/registry/theme";
 import { ChevronDown, Menu, Moon, Sun } from "lucide-react";
 import { SVGProps } from "react";
-
-const styleConfig = [
-  { style: "aodesu", themes: ["dark", "light"] as const },
-  { style: "candy", themes: ["light", "dark"] as const },
-];
 
 const AodesuIcon = (props: SVGProps<SVGSVGElement>) => {
   return (

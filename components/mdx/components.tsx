@@ -81,6 +81,26 @@ export const components = {
     __pnpm__?: string;
     __bun__?: string;
   }) => {
+    const command = String(props.children).trim();
+    if (command.match(/^(npm|yarn|pnpm|bun)\s+/)) {
+      const packageManager = command.split(" ")[0];
+      const commands = {
+        npm: command,
+        yarn: command.replace(/^npm/, "yarn"),
+        pnpm: command.replace(/^npm/, "pnpm"),
+        bun: command.replace(/^npm/, "bun"),
+      };
+
+      return (
+        <CodeBlockCommand
+          __npm__={commands.npm}
+          __yarn__={commands.yarn}
+          __pnpm__={commands.pnpm}
+          __bun__={commands.bun}
+        />
+      );
+    }
+
     // Inline Code.
     if (typeof props.children === "string") {
       return (

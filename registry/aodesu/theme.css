@@ -47,6 +47,8 @@
   --font-branch: "Charm", cursive;
 
   --background: 0 0% 4%;
+  --background-elevated-1: 0 0% 5%;
+  --background-elevated-2: 0 0% 8.5%;
   --foreground: 0 0% 80%;
   --foreground-light: 0 0% 100%;
   --inverse-foreground: 0 0% 10%;
