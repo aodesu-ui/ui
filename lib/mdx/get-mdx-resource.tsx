@@ -1,6 +1,6 @@
 // lib/mdx/get-mdx-source.ts
-import { components } from "@/components/mdx/components";
-import { getToc } from "@/components/mdx/get-toc";
+import { components } from "@/components-b/mdx/components";
+import { getToc } from "@/components-b/mdx/get-toc";
 import fs from "fs";
 import { compileMDX } from "next-mdx-remote/rsc";
 import path from "path";

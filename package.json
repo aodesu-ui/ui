@@ -8,9 +8,12 @@
     "start": "next start",
     "lint": "next lint",
     "registry:pre": "mkdir public\\r\\dark public\\r\\aodesu 2> NUL || exit 0",
-    "registry:build": "concurrently \"npm run registry:pre\" \"shadcn build\""
+    "registry:build": "concurrently \"npm run registry:pre\" \"shadcn build\"",
+    "transpile:registry": "node scripts/transpile-registry.js",
+    "clean:js": "find registry -name \"*.js\" -type f -delete"
   },
   "dependencies": {
+    "@babel/core": "^7.28.4",
     "@radix-ui/react-dropdown-menu": "^2.1.16",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-slot": "^1.2.3",
@@ -42,6 +45,7 @@
     "@types/node": "^20.19.9",
     "@types/react": "19.1.2",
     "@types/react-dom": "19.1.2",
+    "esbuild": "^0.25.10",
     "eslint": "^9.32.0",
     "eslint-config-next": "15.3.1",
     "nodemon": "^3.1.10",

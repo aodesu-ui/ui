@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const eventSchema = z.object({
+export const eventSchema = z.object({
   name: z.enum([
     "copy_npm_command",
     "copy_usage_import_code",
@@ -16,14 +16,9 @@ const eventSchema = z.object({
     "copy_color",
     "set_layout",
   ]),
-  // declare type AllowedPropertyValues = string | number | boolean | null
   properties: z
     .record(z.union([z.string(), z.number(), z.boolean(), z.null()]))
     .optional(),
-})
+});
 
-export type Event = z.infer<typeof eventSchema>
-
-export function trackEvent(input: Event): void {
-  const event = eventSchema.parse(input);
-}
+export type Event = z.infer<typeof eventSchema>;

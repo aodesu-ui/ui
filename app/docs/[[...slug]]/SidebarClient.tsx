@@ -1,7 +1,7 @@
 // components/docs/SidebarClient.tsx
 "use client";
 
-import { pages, type aodesuPage } from "@/components/mdx/pages-config";
+import { pages, type aodesuPage } from "@/components-b/mdx/pages-config";
 import { cn } from "@/lib/utils";
 import { Button } from "@/registry/aodesu/ui/button";
 import { ChevronDown } from "lucide-react";

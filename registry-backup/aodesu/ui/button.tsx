@@ -4,8 +4,8 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
-// Mapa de colores dinámicos
-const variantColorMap = {
+// Mapas de estilos dinámicos
+const variantColorMap: Record<string, Record<string, string>> = {
   ghost: {
     neutral:
       "hover:bg-[hsl(var(--neutral-dark))] active:bg-[hsl(var(--neutral))]",
@@ -46,9 +46,9 @@ const variantColorMap = {
     contrast:
       "text-[hsl(var(--primary-light))] hover:bg-[hsl(var(--primary-light)/.15)] hover:ring-[hsl(var(--primary-light)/.15)] active:bg-[hsl(var(--primary-light)/.2)] active:ring-[hsl(var(--primary-light)/.2)]",
   },
-} as const;
+};
 
-const buttonVariants = cva(
+const buttonBase = cva(
   "inline-flex items-center has-[>svg]:duration-150 justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:transition-transform [&_svg]:duration-150 shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
   {
     variants: {
@@ -75,9 +75,21 @@ const buttonVariants = cva(
       },
     },
     compoundVariants: [
-      { size: "small", icon: true, class: "size-8 rounded-md !px-0" },
-      { size: "medium", icon: true, class: "size-10 rounded-lg !px-0" },
-      { size: "big", icon: true, class: "size-12 rounded-xl !px-0" },
+      {
+        size: "small",
+        icon: true,
+        class: "size-8 rounded-md !px-0",
+      },
+      {
+        size: "medium",
+        icon: true,
+        class: "size-10 rounded-lg !px-0",
+      },
+      {
+        size: "big",
+        icon: true,
+        class: "size-12 rounded-xl !px-0",
+      },
     ],
     defaultVariants: {
       variant: "ghost",
@@ -98,7 +110,7 @@ function Button({
   children,
   ...props
 }: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
+  VariantProps<typeof buttonBase> & {
     asChild?: boolean;
     icon?: boolean;
   }) {
@@ -113,13 +125,13 @@ function Button({
 
   const variantClass =
     (variant && color && variantColorMap[variant]?.[color]) ||
-    variantColorMap.ghost.neutral;
+    variantColorMap["ghost"]["neutral"];
 
   return (
     <Comp
       data-slot="button"
       className={cn(
-        buttonVariants({ variant, color, size, icon: isIconButton }),
+        buttonBase({ variant, color, size, icon: isIconButton }),
         variantClass,
         className
       )}
@@ -130,5 +142,5 @@ function Button({
   );
 }
 
-export { Button, buttonVariants };
+export { Button, buttonBase as buttonVariants };
 

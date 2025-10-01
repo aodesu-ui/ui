@@ -1,5 +1,5 @@
 // app/docs/[[...slug]]/page.tsx
-import { getPrevNext } from "@/components/mdx/pages-config";
+import { getPrevNext } from "@/components-b/mdx/pages-config";
 import { getMdxSource } from "@/lib/mdx/get-mdx-resource";
 import { Button } from "@/registry/aodesu/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
