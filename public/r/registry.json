@@ -35,7 +35,7 @@
       "title": "Button (dark)",
       "description": "Button component bound to Dark theme variables",
       "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["http://localhost:3000/r/dark.json"],
+      "registryDependencies": ["http://ui.aodesu.com/r/dark.json"],
       "files": [
         {
           "path": "registry/dark/ui/button.tsx",
@@ -50,7 +50,7 @@
       "title": "Button (aodesu)",
       "description": "Button component bound to Aodesu theme variables",
       "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["http://localhost:3000/r/aodesu.json"],
+      "registryDependencies": ["http://ui.aodesu.com/r/aodesu.json"],
       "files": [
         {
           "path": "registry/aodesu/ui/button.tsx",
@@ -65,7 +65,7 @@
       "title": "Button (aodesu)",
       "description": "Button component bound to Aodesu theme variables",
       "dependencies": ["class-variance-authority"],
-      "registryDependencies": ["http://localhost:3000/r/aodesu.json"],
+      "registryDependencies": ["http://ui.aodesu.com/r/aodesu.json"],
       "files": [
         {
           "path": "registry/aodesu/ui/button.jsx",
