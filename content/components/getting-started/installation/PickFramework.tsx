@@ -21,9 +21,9 @@ const frameworks = [
 
 export default function PickFramework() {
   return (
-    <div>
+    <div className="flex">
       {frameworks.map((f, i) => (
-        <Button key={i}>
+        <Button className="flex-1 p-4 h-auto justify-center flex-col items-center" asChild variant="contained" key={i}>
           <Link href={f.path}>
             {f.icon}
             {f.name}

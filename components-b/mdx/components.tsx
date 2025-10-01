@@ -64,6 +64,22 @@ export const components = {
       {...props}
     />
   ),
+  pre: ({ className, children, ...props }: React.ComponentProps<"pre">) => {
+    return (
+      <pre
+        className={cn(
+          "no-scrollbar min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 has-[[data-slot=tabs]]:p-0",
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </pre>
+    )
+  },
+  figure: ({ className, ...props }: React.ComponentProps<"figure">) => {
+    return <figure className={cn(className)} {...props} />
+  },
   code: ({
     className,
     __raw__,
@@ -74,12 +90,12 @@ export const components = {
     __bun__,
     ...props
   }: React.ComponentProps<"code"> & {
-    __raw__?: string;
-    __src__?: string;
-    __npm__?: string;
-    __yarn__?: string;
-    __pnpm__?: string;
-    __bun__?: string;
+    __raw__?: string
+    __src__?: string
+    __npm__?: string
+    __yarn__?: string
+    __pnpm__?: string
+    __bun__?: string
   }) => {
     const command = String(props.children).trim();
     if (command.match(/^(npm|yarn|pnpm|bun)\s+/)) {
@@ -114,6 +130,8 @@ export const components = {
       );
     }
 
+    console.log(__npm__)
+
     // npm command.
     const isNpmCommand = __npm__ && __yarn__ && __pnpm__ && __bun__;
     if (isNpmCommand) {
@@ -135,6 +153,21 @@ export const components = {
       </>
     );
   },
+  Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
+    <h3
+      className={cn(
+        "font-heading mt-8 scroll-m-32 text-xl font-medium tracking-tight",
+        className
+      )}
+      {...props}
+    />
+  ),
+  Steps: ({ ...props }) => (
+    <div
+      className="[&>h3]:step steps mb-12 [counter-reset:step] *:[h3]:first:!mt-0"
+      {...props}
+    />
+  ),
   Demo: (props: any) => <Demo {...props} />,
   UiComponent: (props: any) => <UiComponent {...props} />,
   Button: (props: any) => <Button {...props} />,

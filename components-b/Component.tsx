@@ -4,7 +4,7 @@ interface DemoProps {
 }
 
 export async function UiComponent({ folder, file }: DemoProps) {
-  const mod = await import(`@/content/docs/${folder}/${file}.tsx`);
+  const mod = await import(`@/content/components/${folder}/${file}.tsx`);
   const Component = mod.default;
 
   return <Component />;

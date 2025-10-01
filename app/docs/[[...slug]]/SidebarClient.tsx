@@ -100,10 +100,13 @@ function SidebarItem({ page, currentLang, level = 0 }: {
 
   // Es un elemento hoja (página individual)
   return (
-    <Button className="w-full" size="small" asChild>
-      <Link
-        href={`${page.pathname}?lang=${currentLang}`}
-      >
+    <Button
+      variant={isActive ? "contained" : "ghost"}
+      className="w-full"
+      size="small"
+      asChild
+    >
+      <Link href={`${page.pathname}?lang=${currentLang}`}>
         <span className="flex-1">
           {page.title}
           {page.newFeature && (

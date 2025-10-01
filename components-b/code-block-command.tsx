@@ -39,7 +39,7 @@ export function CodeBlockCommand({
             return (
               <Button
                 key={key}
-                variant={activeTab === key ? 'contained' : 'ghost'}
+                variant={activeTab === key ? "contained" : "ghost"}
                 size="small"
                 onClick={() => setActiveTab(key)}
               >
