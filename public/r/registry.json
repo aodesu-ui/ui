@@ -58,6 +58,21 @@
           "target": "components/aodesu/button.tsx"
         }
       ]
+    },
+    {
+      "name": "aodesu/button-js",
+      "type": "registry:ui",
+      "title": "Button (aodesu)",
+      "description": "Button component bound to Aodesu theme variables",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["http://localhost:3000/r/aodesu.json"],
+      "files": [
+        {
+          "path": "registry/aodesu/ui/button.jsx",
+          "type": "registry:component",
+          "target": "components/aodesu/button.jsx"
+        }
+      ]
     }
   ]
 }

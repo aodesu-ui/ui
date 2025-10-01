@@ -41,14 +41,14 @@ export const Header = () => {
     useThemeContext();
 
   return (
-    <header className="flex border-b border-[var(--border)] justify-center">
+    <header className="flex border-b border-[hsl(var(--border))] justify-center">
       <div className="max-w-5xl py-2 px-4 gap-5 flex items-center flex-1">
-        <Button size="icon" variant="outlined">
+        <Button icon variant="outlined">
           <Menu />
         </Button>
         <div className="flex gap-2 items-center">
           <svg
-            className="h-8 text-[var(--primary)]"
+            className="h-8 text-[hsl(var(--primary))]"
             viewBox="0 0 315 350"
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +95,7 @@ export const Header = () => {
                 onClick={() => {
                   setTheme(t);
                 }}
-                variant="ghost"
+                variant={t === theme ? "contained" : "ghost"}
                 color={t === theme ? "contrast" : "neutral"}
                 className="w-full justify-start"
               >

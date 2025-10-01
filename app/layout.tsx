@@ -3,17 +3,28 @@ import '@/registry/aodesu/theme.css';
 import '@/registry/candy/theme.css';
 import { ThemeProvider } from '@/registry/theme';
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Ubuntu, Work_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from './Header';
 
-const geistSans = Geist({
+const geistSans = Work_Sans({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const ubuntu = Ubuntu({
+  variable: "--font-geist-ubuntu",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+});
+
+const workSans = Work_Sans({
+  variable: "--work-sans",
   subsets: ["latin"],
 });
 
@@ -24,7 +35,7 @@ export const metadata: Metadata = {
 
 const styleConfig = [
   { style: "aodesu", themes: ["dark", "light"] as const },
-  { style: "candy", themes: ["light"] as const },
+  { style: "candy", themes: ["light", "dark"] as const },
 ];
 
 export default function RootLayout({
@@ -36,10 +47,10 @@ export default function RootLayout({
     <ThemeProvider isRoot styleConfig={styleConfig}>
       <html lang="es">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`font-work-sans font-normal ${geistSans.variable} ${workSans.variable} ${ubuntu.variable} ${geistMono.variable} antialiased`}
         >
-            <Header />
-            {children}
+          <Header />
+          {children}
         </body>
       </html>
     </ThemeProvider>
