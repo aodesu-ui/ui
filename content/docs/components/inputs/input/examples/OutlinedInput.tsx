@@ -2,7 +2,7 @@ import { Input } from "@/registry/aodesu/ui/input";
 
 export default function BasicInput() {
   return (
-    <>
+    <div className="flex flex-col gap-5">
       <Input
         variant="outlined"
         placeholder="Outlined Neutral"
@@ -22,6 +22,6 @@ export default function BasicInput() {
         color="contrast"
         placeholder="Outlined Contrast"
       />
-    </>
+    </div>
   );
 }

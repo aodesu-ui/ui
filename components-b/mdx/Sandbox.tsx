@@ -18,7 +18,7 @@ export function Sandbox({ code, children }: SandboxProps) {
 
   return (
     <div className="my-6 border rounded-lg overflow-hidden">
-      <div className="p-4 bg-[hsl(var(--sandbox-bg))] items-center flex justify-center gap-3 flex-wrap">
+      <div className="p-10 bg-[hsl(var(--sandbox-bg))] items-center flex justify-center gap-3 flex-wrap">
         {children}
       </div>
       <Button

@@ -2,7 +2,7 @@ import { Input } from "@/registry/aodesu/ui/input";
 
 export default function BasicInput() {
   return (
-    <>
+    <div className="flex flex-col gap-5">
       <Input
         variant="outlined"
         color="secondary"
@@ -18,6 +18,6 @@ export default function BasicInput() {
         color="neutral"
         placeholder="Standard secondary"
       />
-    </>
+    </div>
   );
 }

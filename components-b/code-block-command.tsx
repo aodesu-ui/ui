@@ -33,7 +33,7 @@ export function CodeBlockCommand({
       {/* Header con pestañas */}
       <div className="flex items-center justify-between bg-[hsl(var(--background-elevated-1))] p-2">
         <div className="flex gap-3 items-center mr-3">
-          <SquareTerminal className="opacity-50" />
+          <SquareTerminal className="opacity-50 scale-80" />
           {Object.entries(tabs).map(([key, value]) => {
             if (!value) return null;
             return (

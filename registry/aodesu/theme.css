@@ -2,7 +2,9 @@
 [data-style="aodesu"][data-theme="light"] {
   --font-branch: "Charm", cursive;
 
-  --background: 0 0% 95%;
+  --background: 0 0% 96%;
+  --background-elevated-1: 0 0% 97.5%;
+  --background-elevated-2: 0 0% 100%;
   --foreground: 0 0% 0%;
   --foreground-light: 0 0% 10%;
   --inverse-foreground: 0 0% 100%;
@@ -27,7 +29,7 @@
   --contrast-light: 0 0% 10%;
   --contrast-dark: 0 0% 30%;
 
-  --border: 0 0% 75%;
+  --border: 0 0% 85%;
   --border-outline: 0 0% 85%;
 
   --ghost-neutral-bg: 0 0% 0%;
