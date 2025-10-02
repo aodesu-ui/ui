@@ -1,7 +1,6 @@
 import { Button } from "@/registry/aodesu/ui/button";
 
 export default function BasicButton() {
-  console.log('default')
   return (
     <>
       <Button variant="ghost">Ghost</Button>

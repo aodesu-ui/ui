@@ -26,6 +26,10 @@ export const pages: aodesuPage[] = [
           {
             pathname: "/docs/components/inputs/button",
             title: "Button"
+          },
+          {
+            pathname: "/docs/components/inputs/input",
+            title: "Input"
           }
         ]
       }
