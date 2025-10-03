@@ -44,15 +44,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ThemeProvider isRoot styleConfig={styleConfig}>
-      <html lang="es">
-        <body
-          className={`font-work-sans font-normal ${geistSans.variable} ${workSans.variable} ${ubuntu.variable} ${geistMono.variable} antialiased`}
-        >
-          <Header />
-          {children}
-        </body>
-      </html>
-    </ThemeProvider>
+    <html lang="es">
+      <body
+        className={`font-work-sans font-normal ${geistSans.variable} ${workSans.variable} ${ubuntu.variable} ${geistMono.variable} antialiased`}
+      >
+      <ThemeProvider isRoot styleConfig={styleConfig}>
+        <Header />
+        {children}
+      </ThemeProvider>
+      </body>
+    </html>
   );
 }

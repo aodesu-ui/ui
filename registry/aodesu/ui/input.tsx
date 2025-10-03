@@ -9,7 +9,7 @@ const inputVariantColorMap = {
     neutral:
       "border-[hsl(var(--border))] focus-visible:border-[hsl(var(--neutral))]",
     primary:
-      "border-[hsl(var(--primary)/.4)] focus-visible:border-[hsl(var(--primary))] focus-visible:ring-[hsl(var(--primary-light))]",
+      "border-[hsl(var(--primary)/.4)] focus-visible:border-[hsl(var(--primary))] ",
     secondary:
       "border-[hsl(var(--secondary)/.4)] focus-visible:border-[hsl(var(--secondary))] focus-visible:ring-[hsl(var(--secondary-light))]",
     contrast:
@@ -38,7 +38,7 @@ const inputVariantColorMap = {
 } as const;
 
 const inputVariants = cva(
-  "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground w-full min-w-0 bg-transparent text-base outline-none file:inline-flex file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 transition-colors",
+  "file:text-foreground placeholder:text-muted-foreground selection:bg-[hsl(var(--foreground))] selection:text-[hsl(var(--background))] w-full min-w-0 bg-transparent text-base outline-none file:inline-flex file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 transition-colors",
   {
     variants: {
       variant: {
